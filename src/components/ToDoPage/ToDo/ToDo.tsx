@@ -1,5 +1,6 @@
 import './ToDo.css'
 import { FC } from "react"
+import { FaCalendarAlt } from 'react-icons/fa';
 import ToDoCard from './ToDoCard/ToDoCard';
 
 
@@ -29,8 +30,11 @@ const ToDo: FC<Props> = ({ todos, searchToDo }) => {
                             <div>
                                 {todos.map((item: any) => (
                                     item.status_id === 2 && (
-                                        <div key={item.id}>
-                                            <input className='completed' value={item.text} readOnly />
+                                        <div key={item.id} className='todo-completed-span'>
+                                            <span className='completed'>{item.text}</span>
+                                            <div className="completed-date">
+                                                <FaCalendarAlt /> {new Date(item.date_completion).toLocaleDateString()}
+                                            </div>
                                         </div>
                                     )
                                 ))}

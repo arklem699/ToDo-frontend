@@ -11,24 +11,24 @@
     width: 508px;
 }
 
-.todo input, .todo-span {
-    height: 38px;
+.todo input, .todo-span, .todo-completed-span {
+    height: 48px;
+    width: 508px;
+    padding: 0rem 0.75rem 0rem 0.75rem;
     margin-bottom: 10px;
     font-size: 20px;
-    padding: 0.375rem 0.75rem 0.375rem 0.75rem;
     background-color: #282828;
     color: #fff;
     border: none;
     text-align: left;
     white-space: nowrap;
+    overflow: hidden;
 }
 
-.todo input {
-    width: 508px;
-}
-
-.todo .todo-span {
-    width: 508px;
+.todo-completed-span {
+    display: inline-block;
+    position: relative;
+    
 }
 
 .todo details {
@@ -43,7 +43,19 @@
 }
 
 .completed {
+    display: inline-block;
+    width: 100%;
+    position: relative;
     text-decoration: underline;
     text-underline-offset: -40%;
     text-decoration-skip-ink: none;
+    overflow: hidden;
+}
+
+.completed-date {
+    position: absolute;
+    font-size: 13px;
+    color: #8b8b8b;
+    margin-top: -10px;
+    z-index: 1;
 }

@@ -24,6 +24,15 @@
 
 .todo-span span {
     display: inline-block;
+    position: relative;
     width: 425px;
     overflow: hidden;
+}
+
+.todo-date {
+    position: relative;
+    font-size: 13px;
+    color: #8b8b8b;
+    margin-top: -10px;
+    z-index: 1;
 }

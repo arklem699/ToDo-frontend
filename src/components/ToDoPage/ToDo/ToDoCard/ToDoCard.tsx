@@ -1,11 +1,12 @@
 import './ToDoCard.css'
 import React, { FC, useState } from 'react';
-import { FaTrash, FaCheck } from 'react-icons/fa';
+import { FaTrash, FaCheck, FaCalendarAlt } from 'react-icons/fa';
 import axios from 'axios';
 
 interface TodoItem {
     id: string;
     text: string;
+    date_completion: string;
     status_id: number;
 }
 
@@ -55,6 +56,9 @@ const ToDoCard: FC<Props> = ({ todo, searchToDo }) => {
             ) : (
                 <div className='todo-span'>
                     <span onClick={() => setIsEditing(true)}>{todo.text}</span>
+                    <div className="todo-date">
+                        <FaCalendarAlt /> {new Date(todo.date_completion).toLocaleDateString()}
+                    </div>
                     <FaCheck className="check" title="Отметить выполненным" onClick={putToDo} />
                     <FaTrash className="bin" title="Удалить" onClick={deleteToDo} />
                 </div>
