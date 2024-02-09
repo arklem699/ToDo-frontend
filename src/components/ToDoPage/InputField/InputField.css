@@ -1,0 +1,35 @@
+.inputfield {
+    display: inline-flex;
+    margin-top: 70px;
+    margin-bottom: 40px;
+}
+
+.inputfield input {
+    width: 400px;
+    height: 38px;
+    font-size: 20px;
+    border-radius: 0%;
+    margin-right: 5px;
+    border: none;
+    background-color: #282828;
+    color: #fff;
+}
+
+.inputfield input:focus {
+    background-color: #282828;
+    color: #fff;
+}
+
+.inputfield input::placeholder {
+    color: #8b8b8b;
+}
+
+.inputfield button {
+    width: 103px;
+    border-radius: 0%;
+    background-color: #382bf0;
+}
+
+.inputfield button:hover {
+    background-color: #251d9c;
+}

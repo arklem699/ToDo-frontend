@@ -1,0 +1,29 @@
+.bin, .check {
+    font-size: 18px;
+    color: #8b8b8b;
+    position: absolute;
+    top: 40%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.bin:hover {
+    color: red;
+}
+
+.check {
+    right: 40px;
+}
+
+.check:hover {
+    color: green;
+}
+
+.todo-span span {
+    display: inline-block;
+    width: 425px;
+    overflow: hidden;
+}
