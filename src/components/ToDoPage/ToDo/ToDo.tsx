@@ -16,24 +16,28 @@ const ToDo: FC<Props> = ({ todos, searchToDo }) => {
         <div className="todo">
             {todos && (
                 <>
-                    {todos.map((item: any) => (
-                        item.status_id === 1 && (
+                    {todos
+                        .filter((item: any) => item.status_id === 1)
+                        .sort((a: any, b: any) => new Date(a.date_completion).getTime() - new Date(b.date_completion).getTime())
+                        .map((item: any) => (
                             <div key={item.id} className="todo-item">
                                 <ToDoCard todo={item} searchToDo={searchToDo} />
                             </div>
-                        )
-                    ))}
+                        ))
+                    }
                     <div className='todo-item'>
                         <details>
                             <summary>Выполнено ({completedTodos.length})</summary>
                             <div>
-                                {todos.map((item: any) => (
-                                    item.status_id === 2 && (
+                                {todos
+                                    .filter((item: any) => item.status_id === 2)
+                                    .sort((a: any, b: any) => new Date(a.date_completion).getTime() - new Date(b.date_completion).getTime())
+                                    .map((item: any) => (
                                         <div key={item.id}>
                                             <ToDoCard todo={item} searchToDo={searchToDo} />
                                         </div>
-                                    )
-                                ))}
+                                    ))
+                                }
                             </div>
                         </details>
                     </div>
