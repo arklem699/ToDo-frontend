@@ -29,10 +29,21 @@
     overflow: hidden;
 }
 
+.todo-span .completed {
+    width: 485px;
+    text-decoration: underline;
+    text-underline-offset: -40%;
+    text-decoration-skip-ink: none;
+}
+
 .todo-date {
     position: relative;
     font-size: 13px;
     color: #8b8b8b;
     margin-top: -10px;
     z-index: 1;
+}
+
+.overdue {
+    color: red;
 }

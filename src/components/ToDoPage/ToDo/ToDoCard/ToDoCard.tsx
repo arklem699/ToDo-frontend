@@ -1,5 +1,5 @@
 import './ToDoCard.css'
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { FaTrash, FaCheck, FaCalendarAlt } from 'react-icons/fa';
 import axios from 'axios';
 
@@ -20,6 +20,19 @@ const ToDoCard: FC<Props> = ({ todo, searchToDo }) => {
     const [editedText, setEditedText] = useState(todo.text)
 
     const [isEditing, setIsEditing] = useState(false)
+
+    const [isOverdue, setIsOverdue] = useState(false)
+
+    const [isCompleted, setIsCompleted] = useState(false)
+
+    useEffect(() => {
+        const overdue = new Date(todo.date_completion).toLocaleDateString() < new Date().toLocaleDateString()
+        setIsOverdue(overdue)
+    }, [todo.date_completion])
+
+    useEffect(() => {
+        todo.status_id === 2 ? setIsCompleted(true) : setIsCompleted(false)
+    }, [])
 
     const deleteToDo = async () => {
         await axios.delete(`http://localhost:8000/api/todo/delete/${todo.id}/`)
@@ -55,12 +68,21 @@ const ToDoCard: FC<Props> = ({ todo, searchToDo }) => {
                 />
             ) : (
                 <div className='todo-span'>
-                    <span onClick={() => setIsEditing(true)}>{todo.text}</span>
-                    <div className="todo-date">
+                    <span 
+                        className={`${isCompleted ? "completed" : ""}`}
+                        onClick={isCompleted ? () => setIsEditing(false) : () => setIsEditing(true)}
+                    >
+                        {todo.text}
+                    </span>
+                    <div className={`todo-date ${isOverdue ? "overdue" : ""}`}>
                         <FaCalendarAlt /> {new Date(todo.date_completion).toLocaleDateString()}
                     </div>
-                    <FaCheck className="check" title="Отметить выполненным" onClick={putToDo} />
-                    <FaTrash className="bin" title="Удалить" onClick={deleteToDo} />
+                    {!isCompleted && (
+                        <>
+                            <FaCheck className="check" title="Отметить выполненным" onClick={putToDo} />
+                            <FaTrash className="bin" title="Удалить" onClick={deleteToDo} />
+                        </>
+                    )}
                 </div>
             )}
         </>
