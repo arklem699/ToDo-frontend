@@ -17,8 +17,8 @@
     padding: 0rem 0.75rem 0rem 0.75rem;
     margin-bottom: 10px;
     font-size: 20px;
-    background-color: #282828;
-    color: #fff;
+    background-color: var(--background-color);
+    color: var(--color);
     border: none;
     text-align: left;
     white-space: nowrap;
@@ -30,7 +30,7 @@
 }
 
 .todo summary {
-    color: #fff;
+    color: var(--color);
     text-align: left;
     margin-top: 20px;
     margin-bottom: 10px;

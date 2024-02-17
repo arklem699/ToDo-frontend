@@ -11,17 +11,17 @@
     border-radius: 0%;
     margin-right: 5px;
     border: none;
-    background-color: #282828;
-    color: #fff;
+    background-color: var(--background-color);
+    color: var(--color);
 }
 
 .inputfield input:focus {
-    background-color: #282828;
-    color: #fff;
+    background-color: var(--background-color);
+    color: var(--color);
 }
 
 .inputfield input::placeholder {
-    color: #8b8b8b;
+    color: var(--text-color);
 }
 
 .inputfield button {

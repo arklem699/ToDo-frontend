@@ -1,9 +1,23 @@
 .navbar {
-    color: #3f3f3f;
+    background-color: var(--background-color);
+    
 }
 
-.navbar-brand {
+li a.nav-link {
+    color: var(--text-color);
+}
+
+li a.nav-link:hover {
+    color: var(--color);
+}
+
+nav a.navbar-brand {
+    color: var(--text-color);
     margin-left: 20px;
+}
+
+nav a.navbar-brand:hover {
+    color: var(--color);
 }
 
 .navbar-nav {

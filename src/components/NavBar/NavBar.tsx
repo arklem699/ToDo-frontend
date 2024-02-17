@@ -7,7 +7,7 @@ const NavBar = () => {
 
     return (
         <div>
-            <nav className="navbar fixed-top navbar-expand navbar-dark bg-dark">
+            <nav className="navbar fixed-top navbar-expand  ">
                 <Link to={"/"} className="navbar-brand">
                     Главная
                 </Link>

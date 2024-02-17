@@ -1,0 +1,19 @@
+body[data-theme="dark"] {
+    --main-background-color: #121212;
+    --background-color: #282828;
+    --border-color: #575757;
+    --text-color: #8b8b8b;
+    --color: #fff;
+    background-color: var(--main-background-color);
+    transition: background-color 0.25s ease-in-out;
+}
+
+body[data-theme="light"] {
+    --main-background-color: #cdcdcd;
+    --background-color: #e6e6e6;
+    --border-color: #979797;
+    --text-color: #636363;
+    --color: #000;
+    background-color: var(--main-background-color);
+    transition: background-color 0.25s ease-in-out;
+}

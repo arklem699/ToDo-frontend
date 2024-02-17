@@ -21,7 +21,7 @@
 }
 
 .card-auth {
-    background-color: #282828;
+    background-color: var(--background-color);
     padding: 20px 25px 30px;
     margin: 0 auto 25px;
     margin-top: 30px;
@@ -56,7 +56,7 @@
 .form-group {
     position: relative;
     margin-top: 20px; /* Отступ между элементами формы */
-    background-color: #282828;
+    background-color: var(--background-color);
 }
 
 .form-group span {
@@ -66,7 +66,7 @@
     display: inline-block;
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
-    color: #8b8b8b;
+    color: var(--text-color);
     font-weight: 300;
     transition: 0.1s;
     pointer-events: none;
@@ -75,7 +75,7 @@
 .form-group input:not(:placeholder-shown) ~ span,
 .form-group input:focus ~ span {
     font-size: 12px;
-    background-color: #282828;
+    background-color: var(--background-color);
     color: #5e43f3;
     transform: translateX(5px) translateY(-15px);
     padding: 0px 5px;
@@ -94,9 +94,9 @@
 }
 
 input.field, input.field:focus {
-    background-color: #282828; /* Цвет фона поля ввода */
-    color: #fff; /* Цвет текста поля ввода */
-    border-color: #555; /* Цвет обводки поля ввода */
+    background-color: var(--background-color);
+    color: var(--color);
+    border-color: var(--border-color);
 }
 
 input.field:focus {
@@ -128,7 +128,7 @@ input.form-control.is-valid:focus {
 }
 
 p {
-    color: #8b8b8b;
+    color: var(--text-color);
 }
 
 p a {

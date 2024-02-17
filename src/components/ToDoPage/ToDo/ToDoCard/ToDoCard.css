@@ -1,6 +1,6 @@
 .bin, .check {
     font-size: 18px;
-    color: #8b8b8b;
+    color: var(--text-color);
     position: absolute;
     top: 40%;
     right: 10px;
@@ -39,7 +39,7 @@
 .todo-date {
     position: relative;
     font-size: 13px;
-    color: #8b8b8b;
+    color: var(--text-color);
     margin-top: -10px;
     z-index: 1;
 }
