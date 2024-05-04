@@ -26,7 +26,7 @@ const ToDoCard: FC<Props> = ({ todo, searchToDo }) => {
     const [isCompleted, setIsCompleted] = useState(false)
 
     useEffect(() => {
-        const overdue = new Date(todo.date_completion).toLocaleDateString() < new Date().toLocaleDateString()
+        const overdue = new Date(new Date(todo.date_completion).toDateString()) < new Date(new Date().toDateString())
         setIsOverdue(overdue)
     }, [todo.date_completion])
 
