@@ -1,8 +1,9 @@
 import './Auth.css'
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as yup from "yup"
+import axios from 'axios'
 import NavBar from '../NavBar/NavBar'
 
 
@@ -29,12 +30,36 @@ const SignUpSchema = yup.object().shape({
 
 const SignUp = () => {
 
+    let navigate = useNavigate()
+
     const initialValues = {
         username: "",
         email: "",
         password: "",
         confirmPassword: "",
     }
+
+    const handleSignUp = (values) => {
+
+        axios.post('http://127.0.0.1:8000/api/registration/', {
+            username: values.username,
+            email: values.email,
+            password: values.password,
+        })
+
+        .then(response => {
+            const data = response.data;
+            if (data.access && data.refresh) {
+                localStorage.setItem('accessToken', data.access)
+                localStorage.setItem('refreshToken', data.refresh)
+                navigate("/login")
+            } else {
+                console.error("Ошибка аутентификации")
+            }
+        })
+
+        .catch(error => console.error(error))
+    };
 
     return (
         <div>
@@ -49,12 +74,7 @@ const SignUp = () => {
                     <Formik
                         initialValues={initialValues}
                         validationSchema={SignUpSchema}
-                        onSubmit={(values, { setSubmitting }) => {
-                            setTimeout(() => {
-                                alert(JSON.stringify(values, null, 2))
-                                setSubmitting(false)
-                            }, 400)
-                        }}
+                        onSubmit={handleSignUp}
                     >
                     {({ errors, touched }) => (
                         <Form>

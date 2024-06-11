@@ -1,19 +1,26 @@
 .navbar {
-    background-color: var(--background-color);
-    
+    background-color: var(--background-color);   
 }
 
-li a.nav-link {
+li a.nav-link, button.nav-link {
     color: var(--text-color);
 }
 
-li a.nav-link:hover {
+li a.nav-link:focus, button.nav-link:focus {
+    color: var(--text-color);
+}
+
+li a.nav-link:hover, button.nav-link:hover {
     color: var(--color);
 }
 
 nav a.navbar-brand {
     color: var(--text-color);
     margin-left: 20px;
+}
+
+nav a.navbar-brand:focus {
+    color: var(--text-color);
 }
 
 nav a.navbar-brand:hover {
