@@ -8,17 +8,23 @@ import ToDo from "./ToDo/ToDo"
 
 const ToDoPage = () => {
 
-    const [todos, setTodos] = useState<[] | null>(null)
+    const [todos, setTodos] = useState([])
 
     const searchToDo = async () => {
-
-        const result = await axios.get(`http://localhost:8000/api/todo/get/`)
-        setTodos(result.data)
+        try {
+            const result = await axios.get(`http://localhost:8000/api/todo/get/`, {
+                headers: {'Authorization': `Bearer ${localStorage.getItem('accessToken')}`}
+            })
+            setTodos(result.data)
+        } catch(error) {
+            console.log(error)
+            setTodos([])
+        }
     }
 
     useEffect(() => {
-        searchToDo(); // Вызываем функцию при загрузке компонента
-    }, []);
+        searchToDo()  // Вызываем функцию при загрузке компонента
+    }, [])
 
     return (
         <div className="block">

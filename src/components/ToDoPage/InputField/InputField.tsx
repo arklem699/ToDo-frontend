@@ -17,8 +17,11 @@ const InputField: FC<Props> = ({ searchToDo }) => {
     }
 
     const addToDo = async () => {
-
-        await axios.post(`http://localhost:8000/api/todo/post/`, { text: inputValue })
+        await axios.post(`http://localhost:8000/api/todo/post/`, {
+            text: inputValue
+        }, {
+            headers: {'Authorization': `Bearer ${localStorage.getItem('accessToken')}`}
+        })
         searchToDo()
         setInputValue("")
     }

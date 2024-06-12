@@ -35,17 +35,25 @@ const ToDoCard: FC<Props> = ({ todo, searchToDo }) => {
     }, [])
 
     const deleteToDo = async () => {
-        await axios.delete(`http://localhost:8000/api/todo/delete/${todo.id}/`)
+        await axios.delete(`http://localhost:8000/api/todo/delete/${todo.id}/`, {
+            headers: {'Authorization': `Bearer ${localStorage.getItem('accessToken')}`}
+        })
         searchToDo()
     }
 
     const putToDo = async () => {
-        await axios.put(`http://localhost:8000/api/todo/put/status/${todo.id}/`)
+        await axios.put(`http://localhost:8000/api/todo/put/status/${todo.id}/`, {}, {
+            headers: {'Authorization': `Bearer ${localStorage.getItem('accessToken')}`}
+        })
         searchToDo()
     }
 
     const editToDo = async () => {
-        await axios.put(`http://localhost:8000/api/todo/put/text/${todo.id}/`, { text: editedText })
+        await axios.put(`http://localhost:8000/api/todo/put/text/${todo.id}/`, {
+            text: editedText 
+        }, {
+            headers: {'Authorization': `Bearer ${localStorage.getItem('accessToken')}`}
+        })
         searchToDo()
         setIsEditing(false)
     }

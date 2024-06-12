@@ -34,8 +34,8 @@ const NavBar = () => {
     }
 
     useEffect(() => {
-        setStoredUser(JSON.parse(localStorage.getItem("user")));
-    }, []);
+        setStoredUser(JSON.parse(localStorage.getItem("user")))
+    }, [])
 
     return (
         <div>
