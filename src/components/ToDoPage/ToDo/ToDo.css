@@ -8,12 +8,12 @@
     display: flex;
     align-items: center;
     position: relative;
-    width: 508px;
+    width: 550px;
 }
 
 .todo input, .todo-span {
     height: 48px;
-    width: 508px;
+    width: 550px;
     padding: 0rem 0.75rem 0rem 0.75rem;
     margin-bottom: 10px;
     font-size: 20px;
