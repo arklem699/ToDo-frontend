@@ -1,7 +1,13 @@
 import './ToDoCard.css'
-import React, { FC, useState, useEffect } from 'react';
-import { FaTrash, FaCheck, FaCalendarAlt } from 'react-icons/fa';
-import axios from 'axios';
+import 'react-datepicker/dist/react-datepicker.css'
+import React, { FC, useState, useEffect } from 'react'
+import { FaTrash, FaCheck, FaCalendarAlt } from 'react-icons/fa'
+import axios from 'axios'
+import DatePicker, { registerLocale } from 'react-datepicker'
+import { ru } from 'date-fns/locale'
+
+
+registerLocale('ru', ru)
 
 interface TodoItem {
     id: string;
@@ -48,7 +54,7 @@ const ToDoCard: FC<Props> = ({ todo, searchToDo }) => {
         searchToDo()
     }
 
-    const editToDo = async () => {
+    const editTextToDo = async () => {
         await axios.put(`http://localhost:8000/api/todo/put/text/${todo.id}/`, {
             text: editedText 
         }, {
@@ -58,11 +64,33 @@ const ToDoCard: FC<Props> = ({ todo, searchToDo }) => {
         setIsEditing(false)
     }
 
+    const editDateToDo = async (editedDate: Date | null) => {
+
+        const formattedDate = editedDate?.toLocaleDateString('fr-CA').split('T')[0]
+
+        await axios.put(`http://localhost:8000/api/todo/put/date/${todo.id}/`, {
+            date: formattedDate
+        }, {
+            headers: {'Authorization': `Bearer ${localStorage.getItem('accessToken')}`}
+        })
+        searchToDo()
+    }
+
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            editToDo()
+            editTextToDo()
         }
     }
+
+    const handleDateChange = (editedDate: Date | null) => {
+        editDateToDo(editedDate)
+    }
+
+    const CustomDateInput = ({ onClick }: { onClick?: () => void }) => (
+        <button className="custom-date-input" onClick={onClick}>
+            <FaCalendarAlt title="Изменить дату" />
+        </button>
+    )
 
     return (
         <>
@@ -70,14 +98,14 @@ const ToDoCard: FC<Props> = ({ todo, searchToDo }) => {
                 <input
                     value={editedText}
                     onChange={(e) => setEditedText(e.target.value)}
-                    onBlur={editToDo}
+                    onBlur={editTextToDo}
                     onKeyDown={handleKeyDown}
                     autoFocus
                 />
             ) : (
                 <div className='todo-span'>
                     <span 
-                        className={`${isCompleted ? "completed" : ""}`}
+                        className={`span ${isCompleted ? "completed" : ""}`}
                         onClick={isCompleted ? () => setIsEditing(false) : () => setIsEditing(true)}
                     >
                         {todo.text}
@@ -87,6 +115,21 @@ const ToDoCard: FC<Props> = ({ todo, searchToDo }) => {
                     </div>
                     {!isCompleted && (
                         <>
+                            <DatePicker
+                                selected={new Date(todo.date_completion)}
+                                onChange={handleDateChange}
+                                locale="ru"
+                                customInput={<CustomDateInput />}
+                                dateFormat="dd/MM/yyyy"
+                                dayClassName={(date) =>
+                                    date.getDate() === (new Date(todo.date_completion)?.getDate() || 0) &&
+                                    date.getMonth() === (new Date(todo.date_completion)?.getMonth() || 0) &&
+                                    date.getFullYear() === (new Date(todo.date_completion)?.getFullYear() || 0)
+                                        ? 'react-datepicker__day--highlighted'
+                                        : ''
+                                }
+                                wrapperClassName="custom-calendar"
+                            />
                             <FaCheck className="check" title="Отметить выполненным" onClick={putToDo} />
                             <FaTrash className="bin" title="Удалить" onClick={deleteToDo} />
                         </>

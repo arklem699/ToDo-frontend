@@ -1,4 +1,4 @@
-.bin, .check {
+.bin, .check, .custom-calendar {
     font-size: 18px;
     color: var(--text-color);
     position: absolute;
@@ -15,14 +15,39 @@
 }
 
 .check {
-    right: 40px;
+    right: 43px;
 }
 
 .check:hover {
     color: green;
 }
 
-.todo-span span {
+.todo-span .custom-calendar {
+    right: 70px;
+}
+
+.todo-span .custom-date-input {
+    width: 30px;
+    height: 30px;
+    background-color: var(--background-color);
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.todo-span .custom-date-input svg {
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+.todo-span .custom-date-input svg:hover {
+    color: var(--color);
+}
+
+.todo-span .span {
     display: inline-block;
     position: relative;
     width: 425px;
