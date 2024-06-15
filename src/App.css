@@ -17,3 +17,8 @@ body[data-theme="light"] {
     background-color: var(--main-background-color);
     transition: background-color 0.25s ease-in-out;
 }
+
+.main-content {
+    min-height: calc(100vh - 100px);
+    padding-bottom: 100px;
+}
