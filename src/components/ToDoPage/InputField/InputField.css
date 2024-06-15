@@ -43,7 +43,10 @@
 }
 
 .inputfield .custom-date-input:hover {
-    background-color: #f0f0f0;
+    background-color: var(--border-color);
+    svg {
+        color: var(--color); 
+    }
 }
 
 .inputfield .custom-date-input svg {
