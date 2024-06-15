@@ -1,7 +1,8 @@
 import Button from 'react-bootstrap/Button'
 import 'react-datepicker/dist/react-datepicker.css'
 import './InputField.css'
-import { FC, useState } from "react"
+import { FC, useState, useEffect } from "react"
+import { Link } from 'react-router-dom'
 import { FaCalendarAlt } from 'react-icons/fa'
 import axios from 'axios'
 import DatePicker, { registerLocale } from 'react-datepicker'
@@ -16,9 +17,21 @@ interface Props {
 
 const InputField: FC<Props> = ({ searchToDo }) => {
 
+    const [storedUser, setStoredUser] = useState(() => {
+        const user = localStorage.getItem("user")
+        return user ? JSON.parse(user) : null
+    })
+
     const [inputValue, setInputValue] = useState<string>("")
 
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date())
+
+    useEffect(() => {
+        const user = localStorage.getItem("user")
+        if (user) {
+            setStoredUser(JSON.parse(user))
+        }
+    }, [])
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value)
@@ -31,8 +44,6 @@ const InputField: FC<Props> = ({ searchToDo }) => {
     const addToDo = async () => {
 
         const formattedDate = selectedDate?.toLocaleDateString('fr-CA').split('T')[0]
-
-        console.log(selectedDate, formattedDate)
 
         await axios.post(`http://localhost:8000/api/todo/post/`, {
             text: inputValue,
@@ -80,7 +91,11 @@ const InputField: FC<Props> = ({ searchToDo }) => {
                         : ''
                 }
             />
-            <Button className="save" variant='success' onClick={addToDo}>Сохранить</Button>
+            {storedUser ? (
+                <Button className="save" variant='success' onClick={addToDo}>Сохранить</Button>
+            ) : (
+                <Button className="save" variant='success'><Link to='/login'>Сохранить</Link></Button>
+            )}
         </div>
     )
 };

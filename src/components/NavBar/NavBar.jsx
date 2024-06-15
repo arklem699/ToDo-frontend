@@ -51,11 +51,9 @@ const NavBar = () => {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            {/* <Link to={"/login"} className="nav-link" onClick={handleLogout}> */}
                             <button type="submit" onClick={handleLogout} className="nav-link">
                                 Выйти
                             </button>
-                            {/* </Link> */}
                         </li>
                     </div>   
                 ) : (

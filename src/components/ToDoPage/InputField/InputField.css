@@ -68,6 +68,11 @@
     background-color: #251d9c;
 }
 
+.inputfield a {
+    text-decoration: none;
+    color: white;
+}
+
 .react-datepicker {
     font-size: 14px;
     background-color: var(--background-color);
@@ -111,11 +116,6 @@
 .react-datepicker__day--highlighted:hover {
     background-color: #251d9c;
 }
-
-/* .react-datepicker__day--selected:hover, 
-.react-datepicker__day--keyboard-selected:hover {
-    background-color: #251d9c;
-} */
 
 .react-datepicker__triangle {
     display: none;
