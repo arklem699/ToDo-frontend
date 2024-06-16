@@ -18,7 +18,9 @@ const ToDo: FC<Props> = ({ todos, searchToDo }) => {
                 <>
                     {todos
                         .filter((item: any) => item.status_id === 1)
-                        .sort((a: any, b: any) => new Date(a.date_completion).getTime() - new Date(b.date_completion).getTime())
+                        .sort((a: any, b: any) => 
+                            new Date(a.date_completion).getTime() - new Date(b.date_completion).getTime() || 
+                            a.text.localeCompare(b.text))
                         .map((item: any) => (
                             <div key={item.id} className="todo-item">
                                 <ToDoCard todo={item} searchToDo={searchToDo} />
@@ -31,7 +33,9 @@ const ToDo: FC<Props> = ({ todos, searchToDo }) => {
                             <div>
                                 {todos
                                     .filter((item: any) => item.status_id === 2)
-                                    .sort((a: any, b: any) => new Date(a.date_completion).getTime() - new Date(b.date_completion).getTime())
+                                    .sort((a: any, b: any) => 
+                                        new Date(a.date_completion).getTime() - new Date(b.date_completion).getTime() || 
+                                        a.text.localeCompare(b.text))
                                     .map((item: any) => (
                                         <div key={item.id}>
                                             <ToDoCard todo={item} searchToDo={searchToDo} />
