@@ -53,7 +53,7 @@ const InputField: FC<Props> = ({ searchToDo }) => {
         })
         searchToDo()
         setInputValue("")
-        setSelectedDate(null)
+        setSelectedDate(new Date())
     }
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
